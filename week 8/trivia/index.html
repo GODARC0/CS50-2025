@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+
+            //for question 1
+            function checkanswer(content)
+            {
+                const correctPlaceholder = document.getElementById("sahi")
+                if (content.innerText != "goa")
+                {
+                    content.style.background = "red";
+                    correctPlaceholder.innerText = "Incorrect";
+                }
+                else{
+                    content.style.background = "green";
+                    correctPlaceholder.innerText = "Correct";
+
+                }
+
+
+            }
+
+            //for question 2
+
+            function submit()
+            {
+                const correctPlaceholder = document.getElementById("correctResponse");
+                const freeResponseAnswer = document.getElementById("freeResponse");
+
+                if (freeResponseAnswer.value != "not possible")
+                {
+                    freeResponseAnswer.style.background = "red";
+                    correctPlaceholder.innerText = "Incorrect";
+                }
+                else{
+                    freeResponseAnswer.style.background = "green";
+                    correctPlaceholder.innerText = "Correct";
+
+                    }
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                 <h3>what is the smallest state of india ?(by area)</h3>
+                 <P id="sahi"></P>
+                 <button onclick="checkanswer(this)">delhi</button>
+                 <button onclick="checkanswer(this)">goa</button>
+                 <button onclick="checkanswer(this)">japan</button>
+                 <button onclick="checkanswer(this)">uttar pradesh(UP)</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                 <h3>how to end world hunger in 1 year?</h3>
+                 <p id = "correctResponse"></p>
+                 <form>
+                    <input type = "Text" id = "freeResponse">
+                 </form>
+                 <button onclick="submit()"> submit</button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}DaulatBox{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Animate on Scroll (AOS) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">DaulatBox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/daulatbook">DaulatBook</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/marketplace">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
+                    {% if session.get('username') %}
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Hi, {{ session['username'] }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/profile">👤 Profile</a></li>
+                            {% if session.get('role') == 'admin' %}
+                                <li><a class="dropdown-item" href="/admin">🛠️ Admin Panel</a></li>
+                            {% endif %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">🚪 Logout</a></li>
+                        </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<style>
+  .toggle-wrapper {
+    text-align: center;
+    margin: 20px;
+  }
+  .toggle-btns button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  .toggle-btns button.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .content-section {
+    display: none;
+    margin-top: 30px;
+  }
+  .content-section.active {
+    display: block;
+  }
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .filter-bar select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  .coin-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+</style>
+
+<div class="toggle-wrapper">
+  <div class="toggle-btns">
+    <button id="myCollectionBtn" class="active">My Collection</button>
+    <button id="rareCoinsBtn">Rare Coins Around the World</button>
+  </div>
+
+  <div class="filter-bar">
+    <select id="filter-country">
+  <option value="">All Countries</option>
+  <option value="India">India</option>
+  <option value="USA">USA</option>
+  <option value="UK">UK</option>
+  <option value="Japan">Japan</option>
+  <option value="China">China</option>
+  <option value="Russia">Russia</option>
+  <option value="Germany">Germany</option>
+  <option value="France">France</option>
+  <option value="Italy">Italy</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Mexico">Mexico</option>
+  <option value="Canada">Canada</option>
+  <option value="Australia">Australia</option>
+  <option value="Egypt">Egypt</option>
+  <option value="Turkey">Turkey</option>
+  <option value="Spain">Spain</option>
+  <option value="Portugal">Portugal</option>
+  <option value="Netherlands">Netherlands</option>
+  <option value="Switzerland">Switzerland</option>
+  <option value="Sweden">Sweden</option>
+  <option value="Norway">Norway</option>
+  <option value="Finland">Finland</option>
+  <option value="South Korea">South Korea</option>
+  <option value="North Korea">North Korea</option>
+  <option value="Vietnam">Vietnam</option>
+  <option value="Thailand">Thailand</option>
+  <option value="Indonesia">Indonesia</option>
+  <option value="Malaysia">Malaysia</option>
+  <option value="Singapore">Singapore</option>
+  <option value="Philippines">Philippines</option>
+  <option value="Saudi Arabia">Saudi Arabia</option>
+  <option value="UAE">UAE</option>
+  <option value="Iran">Iran</option>
+  <option value="Iraq">Iraq</option>
+  <option value="Afghanistan">Afghanistan</option>
+  <option value="Pakistan">Pakistan</option>
+  <option value="Bangladesh">Bangladesh</option>
+  <option value="Nepal">Nepal</option>
+  <option value="Sri Lanka">Sri Lanka</option>
+  <option value="South Africa">South Africa</option>
+  <option value="Nigeria">Nigeria</option>
+  <option value="Kenya">Kenya</option>
+  <option value="Morocco">Morocco</option>
+  <option value="Greece">Greece</option>
+  <option value="Palastine">Palastine</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="Belgium">Belgium</option>
+  <option value="Poland">Poland</option>
+</select>
+
+    <select id="filter-era">
+      <option value="">All Eras</option>
+      <option value="B.C.">B.C.</option>
+      <option value="0-500">0–500</option>
+      <option value="500-1000">500–1000</option>
+      <option value="1000-1500">1000–1500</option>
+      <option value="1500s">1500s</option>
+      <option value="1600s">1600s</option>
+      <option value="1700s">1700s</option>
+      <option value="1800s">1800s</option>
+      <option value="1900s">1900s</option>
+      <option value="MODERN">MODERN</option>
+    </select>
+    <select id="filter-rarity">
+      <option value="">All Rarities</option>
+      <option value="Common">Common</option>
+      <option value="Uncommon">Uncommon</option>
+      <option value="Rare">Rare</option>
+      <option value="Very Rare">Very Rare</option>
+      <option value="Ultra Rare">Ultra Rare</option>
+    </select>
+    <select id="filter-type">
+      <option value="">All Types</option>
+      <option value="coin">Coin</option>
+      <option value="note">Note</option>
+    </select>
+  </div>
+
+  <div id="myCollection" class="content-section active">
+    <h2>My Personal Collection</h2>
+    <div class="container">
+      <div class="row" id="coinList">
+        <div class="coin-card col-md-4" data-country="India" data-era="1900s" data-rarity="Rare" data-type="coin">
+          <h4>1 Rupee Coin</h4>
+          <p>India, 1900s, Rare, Coin</p>
+        </div>
+        <div class="coin-card col-md-4" data-country="USA" data-era="2000s" data-rarity="Common" data-type="note">
+          <h4>1 Dollar Note</h4>
+          <p>USA, 2000s, Common, Note</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rareCoins" class="content-section">
+    <h2>Rare Coins Around the World</h2>
+    <div class="container">
+      <div class="row" id="coinList">
+        {% include "images.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const myBtn = document.getElementById("myCollectionBtn");
+  const rareBtn = document.getElementById("rareCoinsBtn");
+  const mySection = document.getElementById("myCollection");
+  const rareSection = document.getElementById("rareCoins");
+
+  myBtn.addEventListener("click", () => {
+    myBtn.classList.add("active");
+    rareBtn.classList.remove("active");
+    mySection.classList.add("active");
+    rareSection.classList.remove("active");
+  });
+
+  rareBtn.addEventListener("click", () => {
+    rareBtn.classList.add("active");
+    myBtn.classList.remove("active");
+    rareSection.classList.add("active");
+    mySection.classList.remove("active");
+  });
+
+  function applyFilters() {
+    const country = document.getElementById('filter-country').value;
+    const era = document.getElementById('filter-era').value;
+    const rarity = document.getElementById('filter-rarity').value;
+    const type = document.getElementById('filter-type').value;
+
+    document.querySelectorAll('.coin-card').forEach(card => {
+      const match =
+        (!country || card.dataset.country === country) &&
+        (!era || card.dataset.era === era) &&
+        (!rarity || card.dataset.rarity === rarity) &&
+        (!type || card.dataset.type === type);
+
+      card.style.display = match ? 'block' : 'none';
+    });
+  }
+
+  document.querySelectorAll('.filter-bar select').forEach(select => {
+    select.addEventListener('change', applyFilters);
+  });
+</script>
+
+</body>
+</html>

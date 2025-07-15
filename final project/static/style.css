@@ -1,0 +1,350 @@
+/* =====================
+   🌟 DaulatBox Master Style (Refined & Animated)
+   ===================== */
+
+/* 🎨 Color Palette */
+:root {
+    --primary-gold: #d4ac0d;
+    --rich-gold: #f1c40f;
+    --deep-sky: #007bff;
+    --vault-dark: #1e1e1e;
+    --vault-light: #f8f9fa;
+    --note-green: #198754;
+    --text-main: #212529;
+    --footer-bg: #f1f1f1;
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+/* 🌍 Base Styling */
+body {
+    background-color: var(--vault-light);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+/* Fade-in Scroll Animation */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 🔝 Navbar */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: var(--primary-gold) !important;
+    letter-spacing: 1px;
+}
+
+/* 🦸 Hero Section */
+.hero {
+    background: linear-gradient(to right, var(--primary-gold), var(--rich-gold));
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--deep-sky);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 🪙 Rupee Coin */
+.rupee-coin {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, var(--rich-gold), var(--primary-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px #555;
+    box-shadow: 0 4px 12px var(--shadow-dark), inset 0 2px 5px rgba(255, 255, 255, 0.4);
+    position: relative;
+    left: -200px;
+    animation: roll-in 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards, shine 2s ease-in-out 2.5s forwards;
+    overflow: hidden;
+}
+
+.rupee-coin::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: rotate(0deg);
+    animation: shimmer 2.5s ease-in-out 2.5s forwards;
+    pointer-events: none;
+}
+
+@keyframes roll-in {
+    0% { transform: translateX(-20px) rotate(0deg); opacity: 0; }
+    100% { transform: translateX(50vw) rotate(1440deg); opacity: 1; }
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(0deg) translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: rotate(0deg) translateX(100%); opacity: 0; }
+}
+
+/* 📚 About Section */
+#about {
+    background-color: #ffffff;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+#about h2 {
+    color: var(--rich-gold);
+    margin-bottom: 1rem;
+}
+
+/* 🗂 Explore Section */
+.explore-btn {
+   background-color: var(--note-green);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+
+
+
+/* 💰 Marketplace */
+#marketplace {
+    background-color: #ffffff;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.item {
+    background-color: var(--note-green);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 🧠 Testimonials */
+#testimonials {
+    background-color: var(--vault-dark);
+    color: #eee;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+#testimonials h2 {
+    color: var(--primary-gold);
+}
+
+blockquote {
+    font-style: italic;
+    margin: 1rem auto;
+    max-width: 600px;
+    border-left: 4px solid var(--primary-gold);
+    padding-left: 1rem;
+}
+
+/* 🖼 Hero Image */
+img.img-fluid {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px var(--shadow-light);
+}
+
+/* ✨ Buttons */
+.btn-primary {
+    background-color: var(--deep-sky);
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+.btn-outline-success {
+    border-color: var(--note-green);
+    color: var(--note-green);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-outline-success:hover {
+    transform: scale(1.05);
+    opacity: 0.95;
+}
+
+/* 📦 Cards */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    transition: transform 0.2s ease;
+    background-color: #ffffff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 📱 Responsive Fixes */
+@media (max-width: 768px) {
+    h1.display-4 {
+        font-size: 2rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+/* 📝 Suggestions Section */
+#suggestions {
+    padding: 4rem 2rem;
+    background-color: #fefefe;
+    border-top: 2px dashed var(--primary-gold);
+}
+
+#suggestions .container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+#suggestions h2 {
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+#suggestions input,
+#suggestions textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#suggestions input:focus,
+#suggestions textarea:focus {
+    outline: none;
+    border: 2px solid var(--primary-gold);
+    background-color: #fff;
+}
+
+#suggestions textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#suggestions .btn-primary {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+#formSubmitted {
+    margin-top: 1.5rem;
+    color: var(--note-green);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* 📣 Updates Section */
+#updates .updates-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+
+}
+
+#updates .updates-list li {
+    background-color: var(--vault-light);
+    margin: 0.5rem auto;
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+/* 🦶 Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: #6c757d;
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+.alert-danger {
+  border-left: 4px solid #ff4d4d;
+  background-color: #ffe6e6;
+  color: #cc0000;
+}
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}DaulatBox{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Animate on Scroll (AOS) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">DaulatBox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/daulatbook">DaulatBook</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/marketplace">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
+                    {% if session.get('username') %}
+                    <!-- Dropdown for both users and admins -->
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Hi, {{ session['username'] }}
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                     <li><a class="dropdown-item" href="/profile">👤 Profile</a></li>
+                     {% if session.get('role') == 'admin' %}
+                        <li><a class="dropdown-item" href="/admin">🛠️ Admin Panel</a></li>
+                    {% endif %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('logout') }}">🚪 Logout</a></li>
+        </ul>
+    </li>
+{% else %}
+    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+{% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- 📬 Suggestions Form -->
+    <section id="suggestions" data-aos="fade-up">
+        <div class="container">
+            <h2>Have a Suggestion?</h2>
+            <p>We'd love to hear from you! Help us make DaulatBox even better.</p>
+            <form id="suggestionForm"  method="POST" action="/submit-suggestion" autocomplete="off">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Suggestion..." required></textarea>
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+            <div id="formSubmitted" style="display: none;">
+                <h4>✅ Thanks for your suggestion!</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚀 Upcoming Updates -->
+    <section id="updates" data-aos="fade-up">
+        <div class="container">
+            <h2 style="text-align:center;">Upcoming Updates</h2>
+            <ul class="updates-list">
+                <li>😎 Admin login interface with full control to add or remove items from the website</li>
+                <li>📦 New marketplace categories to buy, sell, and trade your collection</li>
+                <li>⚡ Personalized user profiles with various features and options</li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3 mt-5 border-top">
+        <small>© {{ now.year if now else "2025" }} DaulatBox by mohd luqmaan. All rights reserved.</small>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        document.getElementById('suggestionForm').addEventListener('submit', function (e) {
+            this.style.display = 'none';
+            document.getElementById('formSubmitted').style.display = 'block';
+        });
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById("user-dropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener('click', function (e) {
+            const dropdown = document.getElementById("user-dropdown");
+            const trigger = document.querySelector('.nav-link[onclick]');
+            if (!trigger.contains(e.target)) {
+                dropdown.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+sort1 uses: bubble sort
+
+How do you know?: for best case time taken = 0.021s(for sorted5000) and for worst case time = 0.216s(for reverse1000)
+
+sort2 uses: merge sort
+
+How do you know?: best case time = 0.025s(for sorted5000) and for worst case time = 0.050s(for reverse1000)
+
+sort3 uses: selection sort
+
+How do you know?: best case time = 0.042s(for sorted5000) and for worst case time = 0.0157s(for reverse1000)
+
+note: for best case time = (selec>murge>bubble) and for worst case time= = (selec=bubble>murge)

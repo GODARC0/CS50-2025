@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- 2. Hero Section -->
+<header class="hero" >
+    <div class="rupee-coin" data-aos="zoom-in" data-aos-delay="200">₹</div>
+    <h1 data-aos="fade-up" data-aos-delay="300">Welcome to DaulatBox</h1>
+    <p data-aos="fade-up" data-aos-delay="400">Discover, collect, and trade historical coins and currency.</p>
+    <a href="#explore" class="cta-button" data-aos="fade-up" data-aos-delay="500">Start Exploring</a>
+</header>
+
+<!-- 3. About the Collection -->
+<section id="about" data-aos="fade-right" data-aos-duration="1000">
+    <h2>About the Collection</h2>
+<p>This site is a digital vault for my coin and note collection. Also,discover the stories behind rare currency, explore old monetary systems, and uncover rare coins from around the world.</p>
+</section>
+
+<!-- 4. Explore Categories -->
+<section id="explore" data-aos="fade-up" data-aos-duration="1000">
+  <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 10px;">Explore Currency</h2>
+  <p style="text-align: center; font-size: 1rem; color: #888; margin-bottom: 30px;">
+    by Country · Era · Rarity · Type
+  </p>
+
+  <div class="category-grid" style="display: flex; justify-content: center;">
+    <a href="/daulatbook"
+       class="explore-btn"
+       data-aos="zoom-in"
+       data-aos-delay="100">
+       Visit DaulatBook
+    </a>
+  </div>
+</section>
+
+
+<!-- 5. Featured Items for Sale -->
+<section id="marketplace" data-aos="fade-left" data-aos-duration="1000">
+  <h2>Featured Coins & Notes</h2>
+  <div class="container">
+    <div class="row">
+
+      <div class="coin-card col-md-4" id="feature1" data-country="India" data-era="B.C." data-rarity="Ultra Rare" data-type="coin">
+        <img src="/static/coins/india/bc/Taxila_gold_coin_185-170_BC.jpg" alt="Taxila gold Coin" class="img-fluid mb-2 rounded">
+        <h4>Taxila gold Coin</h4>
+        <p>India, B.C., Ultra Rare, Coin</p>
+      </div>
+
+      <div class="coin-card col-md-4" data-country="India" data-era="1500s" data-rarity="Very Rare" data-type="coin">
+        <img src="/static/coins/india/1500s/500px-Silver_Rupee_Akbar.jpg" alt="Silver_Rupee_Akbar" class="img-fluid mb-2 rounded">
+        <h4>Akbar's silver rupee</h4>
+        <p>India, 1500s, Very Rare, Coin</p>
+      </div>
+
+      <div class="coin-card col-md-4" data-country="India" data-era="1900s" data-rarity="Rare" data-type="coin">
+        <img src="/static/coins/india/1900s/1 Anna 1945.png" alt="1 Anna 1945" class="img-fluid mb-2 rounded">
+        <h4>1 Anna 1945</h4>
+        <p>India, 1900s, Rare, Coin</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 6. Testimonials or Collector Quotes -->
+<section id="testimonials" data-aos="fade-up" data-aos-duration="1000">
+    <h2>Collector Quotes</h2>
+   <blockquote data-aos="fade-up" data-aos-delay="100">“More than a collection — this site is my tribute to history through coins and notes.”</blockquote>
+    <blockquote data-aos="fade-up" data-aos-delay="200">“Explore lost empires, learn forgotten stories, and trade pieces of the past.”</blockquote>
+</section>
+
+{% endblock %}
+

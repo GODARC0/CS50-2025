@@ -1,0 +1,47 @@
+html tags
+{
+    <link>
+    <script>...</script>
+    <nav>...</nav>
+    <ul>...</ul>
+    <li>...</li>
+    <a href="..">...</a>
+    <section>...</section>
+    <p>...</p>
+    <h1>...</h1>
+    <h2>...</h2>
+    <h3>...</h3>
+    <hr>
+    <br>
+    <div>...</div>
+    <form>...</form>
+    <button>...</button>
+    <footer>...<footer>
+
+}
+
+
+CSS properties
+{
+    background-color
+    padding
+    list-style
+    align-items
+    display
+    margin
+    text-decoration
+    transition
+    transform
+    font-family
+    text-align
+    hover
+}
+
+JAVASCRIPT
+{
+    used js in making footer interactive by making a review form and instantly show the written review and all the previous writter review.
+}
+BOOTSTRAP
+{
+    used to style the form of the footer.
+}
